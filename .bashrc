@@ -123,7 +123,6 @@ git config --global color.ui true
 
 
 export PAGER=less
-
 export ANDROID_HOME=~/android-studio/sdk
 export PATH=$PATH:~/bin:$ANDROID_HOME/platform-tools
 
@@ -141,3 +140,6 @@ alias fartisan='php artisan '
 noisily () { "$@" && (aplay -q ~/bin/smw_powerup.wav &) || (aplay -q ~/bin/smw_death.wav &); }
 
 alias n='noisily '
+
+## OS X
+# defaults write -g ApplePressAndHoldEnabled -bool false
