@@ -12,4 +12,6 @@ filetype plugin indent on
 set foldmethod=indent
 
 " comment?
-"au BufRead * normal zR
+
+" unfold all folds when opening files
+au BufRead * normal zR
