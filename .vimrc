@@ -1,3 +1,5 @@
+let $VIMHOME=expand('<sfile>:p:h:h')
+
 "NeoBundle Scripts-----------------------------
 if has('vim_starting')
   if &compatible
@@ -5,11 +7,11 @@ if has('vim_starting')
   endif
 
   " Required:
-  set runtimepath+=/home/tj/.vim/bundle/neobundle.vim/
+  set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
-call neobundle#begin(expand('/home/tj/.vim/bundle'))
+call neobundle#begin(expand("$HOME/.vim/bundle"))
 
 " Let NeoBundle manage NeoBundle
 " Required:
