@@ -45,6 +45,7 @@ set foldmethod=indent
 au BufRead * normal zR
 
 command! W :w
+command! Wq :wq
 
 set number
 set numberwidth=5
@@ -83,3 +84,4 @@ noremap <Right> <nop>
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+autocmd InsertLeave * redraw!
