@@ -1,33 +1,3 @@
-"NeoBundle Scripts-----------------------------
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
-
-  " Required:
-  set runtimepath+=/home/tj/.vim/bundle/neobundle.vim/
-endif
-
-" Required:
-call neobundle#begin(expand('/home/tj/.vim/bundle'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'elixir-lang/vim-elixir'
-
-" Required:
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-"End NeoBundle Scripts-------------------------
-
-
 syntax on
 set ignorecase
 " set mouse=a
@@ -45,6 +15,7 @@ set foldmethod=indent
 au BufRead * normal zR
 
 command! W :w
+command! Wq :wq
 
 set number
 set numberwidth=5
@@ -83,3 +54,4 @@ noremap <Right> <nop>
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+autocmd InsertLeave * redraw!
