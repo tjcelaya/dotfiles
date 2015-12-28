@@ -143,3 +143,18 @@ alias n='noisily '
 
 ## OS X
 # defaults write -g ApplePressAndHoldEnabled -bool false
+
+function pffwd() {
+  echo "rdr pass inet proto tcp from any to any port $1 -> 127.0.0.1 port $2" | sudo pfctl -ef - >/dev/null 2>&1;
+  echo "Add Port Forwarding ($1 => $2)"
+}
+
+function gitprompt() {
+ if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+   echo -en "(\033[01;32m" $(git branch 2> /dev/null | egrep '^\*(.*)' | sed 's/\* //') "\033[00m) ";
+   git diff --quiet >/dev/null 2>&1 && echo -en '\033[01;32m✔\033[00m' || echo -en '\033[01;31m✘\033[00m';
+ fi
+}
+
+PS1="\n\!\[\033[01;32m\]\W\[\033[00m\] \$(date +"%H:%M") \$( gitprompt )  \n   λ "
+

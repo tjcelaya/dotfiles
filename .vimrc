@@ -30,7 +30,7 @@ NeoBundleCheck
 
 syntax on
 set ignorecase
-set mouse=a
+" set mouse=a
 set paste
 set nowrap
 set expandtab
@@ -48,8 +48,8 @@ command! W :w
 
 set number
 set numberwidth=5
-set cursorline
-set cursorcolumn
+"set cursorline
+" set cursorcolumn
 set backspace=indent,eol,start
 let mapleader = ','
 
