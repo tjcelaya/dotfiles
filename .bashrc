@@ -140,7 +140,7 @@ alias fartisan='php artisan '
 noisily () { "$@" && (aplay -q ~/bin/smw_powerup.wav &) || (aplay -q ~/bin/smw_death.wav &); }
 
 alias n='noisily '
-
+alias gd-n='g diff --name-only'
 ## OS X
 # defaults write -g ApplePressAndHoldEnabled -bool false
 
@@ -156,5 +156,8 @@ function gitprompt() {
  fi
 }
 
-PS1="\n\!\[\033[01;32m\]\W\[\033[00m\] \$(date +"%H:%M") \$( gitprompt )  \n   λ "
-
+GREEN='\[\033[01;32m\]'
+YELLO='\[\033[01;33m\]'
+BLUE='\[\033[01;34m\]'
+BASE='\[\033[00m\]'
+PS1="\n\!$GREEN \W $BASE \u@$BLUE\H $YELLO\$(date +"%H:%M")$BASE \$( gitprompt )  \n  λ "
