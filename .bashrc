@@ -162,8 +162,22 @@ function gitprompt() {
 GREEN='\[\033[01;32m\]'
 YELLO='\[\033[01;33m\]'
 BLUE='\[\033[01;34m\]'
+RED=$(tput setaf 1)
+ULINE=$(tput smul)
+NLINE=$(tput rmul)
 BASE='\[\033[00m\]'
-PS1="\n\$?$GREEN \W $BASE \u@$BLUE\H $YELLO\$(date +"%H:%M")$BASE \$( gitprompt )  \n  λ "
+DATEFMT="+\"%Z %H:%M\""
+PS1="\n\$?$GREEN \W$BASE \u@$BLUE\H$YELLO $ULINE\$(date ${DATEFMT})${NLINE} ${RED}${ULINE}\$(TZ='UTC' date +\"%Z %H:%M\")${NLINE}${BASE} \$( gitprompt )  \n  λ "
 
-source ~/git-completion.bash
-__git_complete g __git_main
+if [ -f ~/git-completion.bash ]; then
+  source ~/git-completion.bash
+  __git_complete g __git_main
+fi
+
+if hash rbenv 2>/dev/null; then
+  eval "$(rbenv init -)"
+fi
+
+if [ -d ~/.rvm ]; then
+  export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+fi
