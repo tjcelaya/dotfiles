@@ -89,10 +89,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -lhaF'
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -123,12 +119,12 @@ git config --global color.ui true
 
 
 export PAGER=less
-export ANDROID_HOME=~/android-studio/sdk
-export PATH=$PATH:~/bin:$ANDROID_HOME/platform-tools
+export PATH=~/bin:$PATH
 
 PS1='\u \!\[\033[01;32m\]\W\[\033[00m\] \$ '
 
 alias a='alias'
+alias c='clear'
 alias less='less -r '
 alias gS='git status -s '
 alias gD='git diff '
@@ -141,6 +137,13 @@ noisily () { "$@" && (aplay -q ~/bin/smw_powerup.wav &) || (aplay -q ~/bin/smw_d
 
 alias n='noisily '
 alias gd-n='g diff --name-only'
+
+alias ll='ls -lhaF'
+alias la='ls -lhaF'
+alias l='ls -lhaF'
+
+alias g='git '
+
 ## OS X
 # defaults write -g ApplePressAndHoldEnabled -bool false
 
@@ -160,4 +163,7 @@ GREEN='\[\033[01;32m\]'
 YELLO='\[\033[01;33m\]'
 BLUE='\[\033[01;34m\]'
 BASE='\[\033[00m\]'
-PS1="\n\!$GREEN \W $BASE \u@$BLUE\H $YELLO\$(date +"%H:%M")$BASE \$( gitprompt )  \n  λ "
+PS1="\n\$?$GREEN \W $BASE \u@$BLUE\H $YELLO\$(date +"%H:%M")$BASE \$( gitprompt )  \n  λ "
+
+source ~/git-completion.bash
+__git_complete g __git_main
