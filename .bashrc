@@ -181,3 +181,13 @@ fi
 if [ -d ~/.rvm ]; then
   export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 fi
+
+bind Space:magic-space
+
+function aa() {
+  # ALIAS=$1; shift
+  # CMD=$*
+  # echo "alias $ALIAS='$CMD '"
+  echo "alias $1='${@:2} '" >> ~/.bashrc && source .bashrc
+}
+alias gcd1='git clone --depth=1 '
