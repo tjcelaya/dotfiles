@@ -182,6 +182,10 @@ if [ -d ~/.rvm ]; then
   export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 fi
 
+if [ -f ~/.Xmodmap ]; then
+  xmodmap ~/.Xmodmap
+fi
+
 bind Space:magic-space
 
 function aa() {
