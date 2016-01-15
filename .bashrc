@@ -167,7 +167,7 @@ ULINE=$(tput smul)
 NLINE=$(tput rmul)
 BASE='\[\033[00m\]'
 DATEFMT="+\"%Z %H:%M\""
-PS1="\n\$?$GREEN \W$BASE \u@$BLUE\H$YELLO $ULINE\$(date ${DATEFMT})${NLINE} ${RED}${ULINE}\$(TZ='UTC' date +\"%Z %H:%M\")${NLINE}${BASE} \$( gitprompt )  \n  λ "
+PS1="\n\$?$GREEN \$(basename \$(dirname \$(pwd)))/\W$BASE \u@$BLUE\H$YELLO $ULINE\$(date ${DATEFMT})${NLINE} ${RED}${ULINE}\$(TZ='UTC' date +\"%Z %H:%M\")${NLINE}${BASE} \$( gitprompt )  \n  λ "
 
 if [ -f ~/git-completion.bash ]; then
   source ~/git-completion.bash
