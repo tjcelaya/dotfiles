@@ -55,3 +55,8 @@ noremap <Right> <nop>
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 autocmd InsertLeave * redraw!
+execute pathogen#infect()
+
+" only if ocaml is installed
+set rtp^="/Users/tj/.opam/system/share/ocp-indent/vim"
+set rtp+=/Users/tj/.opam/system/share/ocp-index/vim

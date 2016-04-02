@@ -155,7 +155,8 @@ function pffwd() {
 function gitprompt() {
  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
    echo -en "(\033[01;32m" $(git branch 2> /dev/null | egrep '^\*(.*)' | sed 's/\* //') "\033[00m) ";
-   git diff --quiet >/dev/null 2>&1 && echo -en '\033[01;32m✔\033[00m' || echo -en '\033[01;31m✘\033[00m';
+   #git diff --quiet >/dev/null 2>&1 && echo -en '\033[01;32m✔\033[00m' || echo -en '\033[01;31m✘\033[00m';
+   git diff --quiet >/dev/null 2>&1 && echo -en ' ' || echo -en '\033[01;31m✘\033[00m';
  fi
 }
 
@@ -167,7 +168,9 @@ ULINE=$(tput smul)
 NLINE=$(tput rmul)
 BASE='\[\033[00m\]'
 DATEFMT="+\"%Z %H:%M\""
-PS1="\n\$?$GREEN \$(basename \$(dirname \$(pwd)))/\W$BASE \u@$BLUE\H$YELLO $ULINE\$(date ${DATEFMT})${NLINE} ${RED}${ULINE}\$(TZ='UTC' date +\"%Z %H:%M\")${NLINE}${BASE} \$( gitprompt )  \n  λ "
+# PS1="\n\$?$GREEN \$(basename \$(dirname \$(pwd)))/\W$BASE \u@$BLUE\H$YELLO $ULINE\$(date ${DATEFMT})${NLINE} ${RED}${ULINE}\$(TZ='UTC' date +\"%Z %H:%M\")${NLINE}${BASE} \$( gitprompt )  \n  λ "
+function showbad() { [[ $1 -ne 0  ]] && echo -n "$(tput setaf 1)$2$(tput sgr0)" && return 0; }
+PS1="\$( [[ \$? -eq 0 ]] && echo \" \" || echo \"$RED\$?$BASE\" ) \$(basename \$(dirname \$(pwd)))$GREEN/$BASE\W\$( gitprompt ) "
 
 if [ -f ~/git-completion.bash ]; then
   source ~/git-completion.bash
@@ -180,6 +183,11 @@ fi
 
 if [ -d ~/.rvm ]; then
   export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+fi
+
+if [ -d ~/.nvm ]; then
+  export NVM_DIR="/Users/tj/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 fi
 
 if [ -f ~/.Xmodmap ]; then
@@ -195,3 +203,4 @@ function aa() {
   echo "alias $1='${@:2} '" >> ~/.bashrc && source .bashrc
 }
 alias gcd1='git clone --depth=1 '
+
