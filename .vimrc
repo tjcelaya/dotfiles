@@ -47,15 +47,15 @@ set wildmode=longest:list,full
 
 hi CursorLine cterm=NONE ctermbg=grey ctermfg=NONE
 
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
+" noremap <Up> <nop>
+" noremap <Down> <nop>
+" noremap <Left> <nop>
+" noremap <Right> <nop>
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 autocmd InsertLeave * redraw!
-execute pathogen#infect()
+" execute pathogen#infect()
 
 " only if ocaml is installed
 set rtp^="/Users/tj/.opam/system/share/ocp-indent/vim"

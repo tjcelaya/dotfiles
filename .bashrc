@@ -79,7 +79,6 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
 
@@ -88,7 +87,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
+alias ls='ls -G'
+
+#LSCOLORS='di=34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
+export LSCOLORS=exfxcxdxbxexexabagacad
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -190,17 +192,39 @@ if [ -d ~/.nvm ]; then
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 fi
 
+if [ -d ~/.composer ]; then
+  export PATH="$PATH:$HOME/.composer/vendor/bin"
+fi
+
 if [ -f ~/.Xmodmap ]; then
   xmodmap ~/.Xmodmap
 fi
 
+#MAGIC Magic magic!
 bind Space:magic-space
+
+function backup() {
+  cp $1{,.$(date +"%Y%m%d").BAK}
+}
 
 function aa() {
   # ALIAS=$1; shift
   # CMD=$*
   # echo "alias $ALIAS='$CMD '"
-  echo "alias $1='${@:2} '" >> ~/.bashrc && source .bashrc
+  echo "alias $1='${@:2} '" >> ~/.bashrc && source ~/.bashrc
 }
 alias gcd1='git clone --depth=1 '
 
+alias sl='cd /Users/tomas/Vagrant/fullstack_vm/stitchlabs/ '
+alias slssh='sl && vagrant ssh '
+alias bim='vim '
+alias d='docker '
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/tomas/repos/google-cloud-sdk/path.bash.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/Users/tomas/repos/google-cloud-sdk/completion.bash.inc'
+
+
+export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
