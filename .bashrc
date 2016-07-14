@@ -219,6 +219,7 @@ alias sl='cd /Users/tomas/Vagrant/fullstack_vm/stitchlabs/ '
 alias slssh='sl && vagrant ssh '
 alias bim='vim '
 alias d='docker '
+alias gbranches="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches "
 
 # The next line updates PATH for the Google Cloud SDK.
 source '/Users/tomas/repos/google-cloud-sdk/path.bash.inc'
