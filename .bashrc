@@ -135,7 +135,11 @@ alias ebrc='vim ~/.bashrc && source ~/.bashrc'
 alias buns='bundle install'
 alias fartisan='php artisan '
 
-noisily () { "$@" && (aplay -q ~/bin/smw_powerup.wav &) || (aplay -q ~/bin/smw_death.wav &); }
+function noisily () { 
+  "$@" \
+    && {aplay -q ~/bin/smw_powerup.wav &} \
+    || {aplay -q ~/bin/smw_death.wav &}
+}
 
 alias n='noisily '
 alias gd-n='g diff --name-only'
